@@ -1,0 +1,511 @@
+from sense_hat import SenseHat
+import time
+
+sense = SenseHat()
+
+X = [255, 255, 255]  # Red
+O = [0, 0, 0]  # White
+
+nim = "L200180091"
+
+part1 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part2 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+part3 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+ 
+part4 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+part5 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O, 
+O, O, X, X, X, O, O, O 
+]
+
+part6 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part7 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+ 
+part8 = [
+O, O, O, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, X, O, X, O, O, O 
+]
+
+part9 = [
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O, 
+O, O, X, O, X, O, O, O 
+]
+
+part10 = [
+O, O, X, O, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O, 
+O, O, X, O, X, O, O, O 
+]
+
+part11 = [
+O, O, X, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O, 
+O, O, X, X, X, O, O, O 
+]
+
+ 
+part12 = [
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part13 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part14 = [
+O, O, O, O, O, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, X, X, X, O, O, O 
+]
+
+part15 = [
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+
+ 
+part16 = [
+O, O, X, O, X, O, O, O,
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+part17 = [
+O, O, X, O, X, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+part18 = [
+O, O, X, X, X, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part19 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+ 
+part20 = [
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, X, X, X, O, O, O 
+]
+
+part21 = [
+O, O, X, X, X, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+part22 = [
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+part23 = [
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O, 
+O, O, X, O, O, O, O, O 
+]
+
+ 
+part24 = [
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part25 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part26 = [
+O, O, O, O, O, O, O, O,
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+part27 = [
+O, O, X, X, X, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+ 
+part28 = [
+O, O, X, O, O, O, O, O,
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+part29 = [
+O, O, X, X, O, O, O, O,
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, X, O, O, O, O 
+]
+
+part30 = [
+O, O, X, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+part31 = [
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O 
+]
+
+ 
+part32 = [
+O, O, O, O, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O 
+]
+
+part33 = [
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O 
+]
+
+part34 = [
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O  
+]
+
+part35 = [
+O, O, O, X, O, O, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O  
+]
+
+ 
+part36 = [
+O, O, O, X, O, O, O, O,
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O  
+]
+
+part37 = [
+O, O, O, O, O, O, O, O, 
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O,
+O, O, O, O, O, O, O, O  
+]
+
+while True:
+  sense.set_pixels(part1)
+  time.sleep(0.2)
+  sense.set_pixels(part2)
+  time.sleep(0.2)
+  sense.set_pixels(part3)
+  time.sleep(0.2)
+  sense.set_pixels(part4)
+  time.sleep(0.2)
+  sense.set_pixels(part5)
+  time.sleep(0.2)
+  sense.set_pixels(part6)
+  time.sleep(0.2)
+  sense.set_pixels(part7)
+  time.sleep(0.2)
+  sense.set_pixels(part8)
+  time.sleep(0.2)
+  sense.set_pixels(part9)
+  time.sleep(0.2)
+  sense.set_pixels(part10)
+  time.sleep(0.2)
+  sense.set_pixels(part11)
+  time.sleep(0.2)
+  sense.set_pixels(part12)
+  time.sleep(0.2)
+  sense.set_pixels(part13)
+  time.sleep(0.2)
+  sense.set_pixels(part14)
+  time.sleep(0.2)
+  sense.set_pixels(part15)
+  time.sleep(0.2)
+  sense.set_pixels(part16)
+  time.sleep(0.2)
+  sense.set_pixels(part17)
+  time.sleep(0.2)
+  sense.set_pixels(part18)
+  time.sleep(0.2)
+  sense.set_pixels(part19)
+  time.sleep(0.2)
+  sense.set_pixels(part20)
+  time.sleep(0.2)
+  sense.set_pixels(part21)
+  time.sleep(0.2)
+  sense.set_pixels(part22)
+  time.sleep(0.2)
+  sense.set_pixels(part23)
+  time.sleep(0.2)
+  sense.set_pixels(part24)
+  time.sleep(0.2)
+  sense.set_pixels(part25)
+  time.sleep(0.2)
+  sense.set_pixels(part26)
+  time.sleep(0.2)
+  sense.set_pixels(part27)
+  time.sleep(0.2)
+  sense.set_pixels(part28)
+  time.sleep(0.2)
+  sense.set_pixels(part29)
+  time.sleep(0.2)
+  sense.set_pixels(part30)
+  time.sleep(0.2)
+  sense.set_pixels(part31)
+  time.sleep(0.2)
+  sense.set_pixels(part32)
+  time.sleep(0.2)
+  sense.set_pixels(part33)
+  time.sleep(0.2)
+  sense.set_pixels(part34)
+  time.sleep(0.2)
+  sense.set_pixels(part35)
+  time.sleep(0.2)
+  sense.set_pixels(part36)
+  time.sleep(0.2)
+  sense.set_pixels(part37)
+  time.sleep(0.2)
+  sense.show_message("Wulandari Ratna - L200180091", text_colour=[255, 255, 255])
+  time.sleep(1)
+  sense.set_rotation(90)
+  sense.show_message("Wulandari Ratna - L200180091", text_colour=[255, 255, 0])
+  time.sleep(1)
+  sense.set_rotation(0)
+  for i in nim:
+    sense.show_letter(str(i))
+    time.sleep(0.5)
